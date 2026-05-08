@@ -1,0 +1,19 @@
+[target.xtensa-esp32-none-elf]
+runner = "espflash flash --monitor"
+linker = "xtensa-esp-elf-gcc"
+rustflags = [
+  "-C", "link-arg=-mdynconfig=xtensa_esp32.so",
+  "-C", "link-arg=-Tlinkall.x",
+  "-C", "target-cpu=esp32",
+]
+
+[env]
+ESP_LOG = "info"
+XTENSA_GNU_CONFIG = "/Users/henri89/.rustup/toolchains/esp/xtensa-esp-elf/esp-14.2.0_20240906/xtensa-esp-elf/lib/xtensa_esp32.so"
+
+[build]
+target = "xtensa-esp32-none-elf"
+rustflags = []
+
+[unstable]
+build-std = ["core", "alloc"]
